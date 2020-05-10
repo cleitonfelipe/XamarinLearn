@@ -32,6 +32,22 @@ namespace TipCalculator
 
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
+
+            calculateButton.Click += OnCalculateClick;
+        }
+
+        private void OnCalculateClick(object sender, EventArgs e)
+        {
+            string text = inputBill.Text;
+            double bill = 0;
+            if (double.TryParse(text, out bill))
+            {
+                var tip = bill * 0.15;
+                var total = bill + tip;
+
+                outputTip.Text = tip.ToString();
+                outputTotal.Text = total.ToString();
+            }
         }
     }
 }
